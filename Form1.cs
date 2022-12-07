@@ -79,7 +79,7 @@ namespace CsharpForm
                 SqlCommand sqlCommand = new SqlCommand(query, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
                 DataTable dt = new DataTable();
-                sda.Fill(dt);
+                sda.Fill(dt);//something
                 if (dt.Rows.Count > 0)
                 {
                     string data1 = dt.Rows[0]["name"].ToString();
