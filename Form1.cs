@@ -128,5 +128,12 @@ namespace CsharpForm
                 password.PasswordChar = '*';
             }
         }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            Form2 pageLoad = new Form2();
+            pageLoad.Show();
+        }
     }
 }
