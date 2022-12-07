@@ -33,10 +33,17 @@ namespace CsharpForm
             string getPhoneNo = textBox2.Text;
             string getPassword = textBox3.Text;
             string conPassword = textBox4.Text;
-
-            string query2 = "UPDATE UserAdmin SET name='" + getEmail + "',contact='" + getPhoneNo + "',FMLPassword='" + getPassword + "' WHERE name='" + getEmail + "'";
-            SqlCommand cmd2 = new SqlCommand(query2, conn);
-            cmd2.ExecuteNonQuery();
+            string query1 = "Select name From UserAdmin WHERE name='" + getEmail + "'";
+            /*SqlCommand cmd1 = new SqlCommand(query1, conn);
+            cmd1.ExecuteNonQuery();*/
+            SqlCommand sqlCommand = new SqlCommand(query1, conn);
+            int data = (int)sqlCommand.ExecuteScalar();
+            if (getEmail == data.ToString())
+            {
+                string query2 = "UPDATE UserAdmin SET name='" + getEmail + "',contact='" + getPhoneNo + "',FMLPassword='" + getPassword + "' WHERE name='" + getEmail + "'";
+                SqlCommand cmd2 = new SqlCommand(query2, conn);
+                cmd2.ExecuteNonQuery();
+            }
             MessageBox.Show("Updated Successfully");
             conn.Close();
         }
