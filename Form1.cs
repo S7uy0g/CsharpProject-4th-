@@ -154,8 +154,17 @@ namespace CsharpForm
         private void label2_Click(object sender, EventArgs e)
         {
             this.Show();
-            Form2 pageLoad = new Form2();
+            ForgetPassword pageLoad = new ForgetPassword();
             pageLoad.Show();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ForgetPassword nextForm;
+            this.Hide();
+            nextForm = new ForgetPassword();
+            nextForm.ShowDialog();
+            this.Show();
         }
     }
 }

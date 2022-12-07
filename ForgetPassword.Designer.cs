@@ -1,6 +1,6 @@
 ﻿namespace CsharpForm
 {
-    partial class Form2
+    partial class ForgetPassword
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgetPassword));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -97,6 +97,7 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Change Password";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox3
             // 
@@ -145,9 +146,9 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.label2.Location = new System.Drawing.Point(12, 99);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(152, 22);
+            this.label2.Size = new System.Drawing.Size(95, 22);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Verification Code";
+            this.label2.Text = "Phone No.";
             // 
             // label1
             // 
@@ -159,14 +160,14 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Forgot Your Password?";
             // 
-            // Form2
+            // ForgetPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "Form2";
+            this.Name = "ForgetPassword";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
