@@ -2,11 +2,14 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace CsharpForm
 {
     public partial class Form1 : Form
     {
+        SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn
@@ -67,15 +70,34 @@ namespace CsharpForm
             }*/
             /*this.Controls.Clear();
             this.InitializeComponent();*/
-            string getMail = email.Text;
-            string getPassword = password.Text;
-            if(getMail =="Manish" && getPassword =="ManishIsBad")
+            try
             {
-                signUpForm nextForm;
-                this.Hide();
-                nextForm = new signUpForm();
-                nextForm.ShowDialog();
-                this.Show();
+                conn.Open();
+                string getMail = email.Text;
+                string getPassword = password.Text;
+                string query = "SELECT name,FMLPassword from UserAdmin where name='" + getMail + "'AND FMLPassword='" + getPassword + "'";
+                SqlCommand sqlCommand = new SqlCommand(query, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                if (dt.Rows.Count > 0)
+                {
+                    string data1 = dt.Rows[0]["name"].ToString();
+                    string data2 = dt.Rows[0]["FMLPassword"].ToString();
+                    if (getMail == data1 && getPassword == data2)
+                    {
+                        signUpForm nextForm;
+                        this.Hide();
+                        nextForm = new signUpForm();
+                        nextForm.ShowDialog();
+                        this.Show();
+                    }
+                }
+                conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Incorrect Password or Email");
             }
         }
 
