@@ -15,7 +15,8 @@ namespace CsharpForm
    
     public partial class ForgetPassword : Form
     {
-        SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
+        //SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
+        SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");
         public ForgetPassword()
         {
             InitializeComponent();
@@ -33,7 +34,7 @@ namespace CsharpForm
             string getPhoneNo = textBox2.Text;
             string getPassword = textBox3.Text;
             string conPassword = textBox4.Text;
-            string query1 = "Select name From UserAdmin WHERE name='" + getEmail + "'";
+            string query1 = "Select Email From UserAdmin WHERE Email='" + getEmail + "'";
             /*SqlCommand cmd1 = new SqlCommand(query1, conn);
             cmd1.ExecuteNonQuery();*/
             SqlCommand sqlCommand = new SqlCommand(query1, conn);
