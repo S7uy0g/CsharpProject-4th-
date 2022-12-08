@@ -31,15 +31,15 @@ namespace CsharpForm
         {
             conn.Open();
             string getEmail=Email.Text;
-            string getPhoneNo = oPassword.Text;
-            string getPassword = nPassword.Text;
-            string conPassword = PhoneNo.Text;
+            string getPhoneNo = PhoneNo.Text;
+            string getPassword = oPassword.Text;
+            string conPassword = nPassword.Text;
             string query1 = "Select name From UserAdmin WHERE name='" + getEmail + "'";
             /*string query1 = "Select Email From UserAdmin WHERE Email='" + getEmail + "'";*/
             /*SqlCommand cmd1 = new SqlCommand(query1, conn);
             cmd1.ExecuteNonQuery();*/
             SqlCommand sqlCommand = new SqlCommand(query1, conn);
-            int data = (int)sqlCommand.ExecuteScalar();
+            string data = (string)sqlCommand.ExecuteScalar();
             if (getEmail == data.ToString())
             {
                 string query2 = "UPDATE UserAdmin SET name='" + getEmail + "',contact='" + getPhoneNo + "',FMLPassword='" + getPassword + "' WHERE name='" + getEmail + "'";
