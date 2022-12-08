@@ -15,8 +15,8 @@ namespace CsharpForm
    
     public partial class ForgetPassword : Form
     {
-        //SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
-        SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");
+        SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
+       /* SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");*/
         public ForgetPassword()
         {
             InitializeComponent();
@@ -30,11 +30,12 @@ namespace CsharpForm
         private void button1_Click(object sender, EventArgs e)
         {
             conn.Open();
-            string getEmail=textBox1.Text;
-            string getPhoneNo = textBox2.Text;
-            string getPassword = textBox3.Text;
-            string conPassword = textBox4.Text;
-            string query1 = "Select Email From UserAdmin WHERE Email='" + getEmail + "'";
+            string getEmail=Email.Text;
+            string getPhoneNo = oPassword.Text;
+            string getPassword = nPassword.Text;
+            string conPassword = PhoneNo.Text;
+            string query1 = "Select name From UserAdmin WHERE name='" + getEmail + "'";
+            /*string query1 = "Select Email From UserAdmin WHERE Email='" + getEmail + "'";*/
             /*SqlCommand cmd1 = new SqlCommand(query1, conn);
             cmd1.ExecuteNonQuery();*/
             SqlCommand sqlCommand = new SqlCommand(query1, conn);
@@ -46,6 +47,26 @@ namespace CsharpForm
                 cmd2.ExecuteNonQuery();
             }
             MessageBox.Show("Updated Successfully");
+            conn.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+            string getContact = textBox5.Text;
+            string query = "Select name,contact From UserAdmin WHERE contact='" + getContact + "'";
+           /* string query = "Select Email From UserAdmin WHERE Email='" + getEmail + "'";*/
+            SqlCommand sqlCommand = new SqlCommand(query, conn);
+            SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count > 0)
+            {
+                string data1 = dt.Rows[0]["name"].ToString();
+                string data2 = dt.Rows[0]["contact"].ToString();
+                Email.Text = data1;
+                PhoneNo.Text = data2;
+            }
             conn.Close();
         }
     }

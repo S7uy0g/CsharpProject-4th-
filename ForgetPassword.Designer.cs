@@ -28,21 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ForgetPassword));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.PhoneNo = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.nPassword = new System.Windows.Forms.TextBox();
+            this.oPassword = new System.Windows.Forms.TextBox();
+            this.Email = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -56,12 +62,12 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.textBox4);
+            this.panel1.Controls.Add(this.PhoneNo);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.textBox3);
-            this.panel1.Controls.Add(this.textBox2);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.nPassword);
+            this.panel1.Controls.Add(this.oPassword);
+            this.panel1.Controls.Add(this.Email);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -71,12 +77,12 @@
             this.panel1.Size = new System.Drawing.Size(378, 321);
             this.panel1.TabIndex = 1;
             // 
-            // textBox4
+            // PhoneNo
             // 
-            this.textBox4.Location = new System.Drawing.Point(181, 101);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(190, 23);
-            this.textBox4.TabIndex = 9;
+            this.PhoneNo.Location = new System.Drawing.Point(181, 101);
+            this.PhoneNo.Name = "PhoneNo";
+            this.PhoneNo.Size = new System.Drawing.Size(190, 23);
+            this.PhoneNo.TabIndex = 9;
             // 
             // label5
             // 
@@ -99,26 +105,26 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox3
+            // nPassword
             // 
-            this.textBox3.Location = new System.Drawing.Point(181, 193);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(190, 23);
-            this.textBox3.TabIndex = 6;
+            this.nPassword.Location = new System.Drawing.Point(181, 193);
+            this.nPassword.Name = "nPassword";
+            this.nPassword.Size = new System.Drawing.Size(190, 23);
+            this.nPassword.TabIndex = 6;
             // 
-            // textBox2
+            // oPassword
             // 
-            this.textBox2.Location = new System.Drawing.Point(181, 145);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(190, 23);
-            this.textBox2.TabIndex = 5;
+            this.oPassword.Location = new System.Drawing.Point(181, 145);
+            this.oPassword.Name = "oPassword";
+            this.oPassword.Size = new System.Drawing.Size(190, 23);
+            this.oPassword.TabIndex = 5;
             // 
-            // textBox1
+            // Email
             // 
-            this.textBox1.Location = new System.Drawing.Point(181, 63);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(190, 23);
-            this.textBox1.TabIndex = 4;
+            this.Email.Location = new System.Drawing.Point(181, 63);
+            this.Email.Name = "Email";
+            this.Email.Size = new System.Drawing.Size(190, 23);
+            this.Email.TabIndex = 4;
             // 
             // label4
             // 
@@ -160,11 +166,44 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Forgot Your Password?";
             // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(81, 42);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(235, 23);
+            this.textBox5.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(12, 45);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(63, 15);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Phone No.";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(329, 42);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Find";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // ForgetPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBox5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ForgetPassword";
@@ -173,7 +212,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -182,14 +223,18 @@
         private PictureBox pictureBox1;
         private Panel panel1;
         private Button button1;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox nPassword;
+        private TextBox oPassword;
+        private TextBox Email;
         private Label label4;
         private Label label3;
         private Label label2;
         private Label label1;
-        private TextBox textBox4;
+        private TextBox PhoneNo;
         private Label label5;
+        private TextBox textBox5;
+        private Label label6;
+        private Button button2;
+        private ErrorProvider errorProvider1;
     }
 }

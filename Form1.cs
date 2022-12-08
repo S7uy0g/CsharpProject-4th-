@@ -11,8 +11,8 @@ namespace CsharpForm
 {
     public partial class Form1 : Form
     {
-        // SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
-        SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");
+        SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
+       /* SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");*/
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn
@@ -31,7 +31,7 @@ namespace CsharpForm
             email.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, email.Width, email.Height, 10, 10));
             password.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, password.Width, password.Height, 10, 10));
             signUp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, signUp.Width, signUp.Height, 30, 30));
-            conn.Open();
+           /* conn.Open();
             string getEmail = email.Text;
             string query = "Select Email From UserAdmin WHERE Email='" + getEmail + "'";
             SqlCommand sqlCommand = new SqlCommand(query, conn);
@@ -39,7 +39,7 @@ namespace CsharpForm
             if (getEmail != data.ToString())
             {
                 errorProvider1.SetError(email, "Wrong Email");
-            }
+            }*/
         }
 
         public Form1()
@@ -86,14 +86,16 @@ namespace CsharpForm
             conn.Open();
             string getMail = email.Text;
             string getPassword = password.Text;
-            string query = "SELECT Email,FMLPassword from UserAdmin where Email='" + getMail + "'AND FMLPassword='" + getPassword + "'";
+            string query = "SELECT name,FMLPassword from UserAdmin where name='" + getMail + "'AND FMLPassword='" + getPassword + "'";
+           /* string query = "SELECT Email,FMLPassword from UserAdmin where Email='" + getMail + "'AND FMLPassword='" + getPassword + "'";*/
             SqlCommand sqlCommand = new SqlCommand(query, conn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
             DataTable dt = new DataTable();
-            sda.Fill(dt);//something
+            sda.Fill(dt);
             if (dt.Rows.Count > 0)
             {
-                string data1 = dt.Rows[0]["Email"].ToString();
+                string data1 = dt.Rows[0]["name"].ToString();
+                /*string data1 = dt.Rows[0]["Email"].ToString();*/
                 string data2 = dt.Rows[0]["FMLPassword"].ToString();
                 if (getMail == data1 && getPassword == data2)
                 {
@@ -137,20 +139,33 @@ namespace CsharpForm
 
         private void password_TextChanged(object sender, EventArgs e)
         {
-           
+            conn.Open();
+            string getPassword = password.Text;
+            string query = "SELECT name from UserAdmin where FMLPassword='" + getPassword + "'";
+            SqlCommand sqlCommand = new SqlCommand(query, conn);
+            SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count <= 0)
+            {
+                errorProvider1.SetError(email, "Wrong Password");
+            }
+            conn.Close();
         }
         private void email_TextChanged(object sender, EventArgs e)
         {
-        
-                /*  SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
-                  DataTable dt = new DataTable();
-                  sda.Fill(dt);//something
-                  if (dt.Rows.Email 0)
+            conn.Open();
+            string getMail=email.Text;
+            string query = "SELECT name from UserAdmin where name='" + getMail + "'";
+            SqlCommand sqlCommand = new SqlCommand(query, conn);
+            SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+            if (dt.Rows.Count<=0)
                   {
-                      *//*String data1 = dt.Rows[0]["Email"].ToString();*//*
-                      errorProvider1.SetError(email,"Wrong Email");
-                  }*/
-            //conn.Close();
+                errorProvider1.SetError(email, "Wrong Email");
+            }
+            conn.Close();
         }
         private void signUp_Click(object sender, EventArgs e)
         {
