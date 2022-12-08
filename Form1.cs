@@ -131,14 +131,18 @@ namespace CsharpForm
         {
             conn.Open();
             string getPassword = password.Text;
-            string query = "SELECT name from UserAdmin where FMLPassword='" + getPassword + "'";
+            string query = "SELECT FMLPassword from UserAdmin where FMLPassword='" + getPassword + "'";
             SqlCommand sqlCommand = new SqlCommand(query, conn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows.Count <= 0)
             {
-                errorProvider1.SetError(email, "Wrong Password");
+                errorProvider1.SetError(password, "Wrong Password");
+            }
+            else
+            {
+                errorProvider1.Clear();
             }
             conn.Close();
         }
@@ -152,8 +156,12 @@ namespace CsharpForm
             DataTable dt = new DataTable();
             sda.Fill(dt);
             if (dt.Rows.Count<=0)
-                  {
+            {
                 errorProvider1.SetError(email, "Wrong Email");
+            }
+            else
+            {
+                errorProvider1.Clear();
             }
             conn.Close();
         }
