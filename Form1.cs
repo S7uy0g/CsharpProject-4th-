@@ -11,8 +11,8 @@ namespace CsharpForm
 {
     public partial class Form1 : Form
     {
-        // SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
-        SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");
+        SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
+        //SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn
@@ -31,15 +31,6 @@ namespace CsharpForm
             email.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, email.Width, email.Height, 10, 10));
             password.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, password.Width, password.Height, 10, 10));
             signUp.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, signUp.Width, signUp.Height, 30, 30));
-            conn.Open();
-            string getEmail = email.Text;
-            string query = "Select Email From UserAdmin WHERE Email='" + getEmail + "'";
-            SqlCommand sqlCommand = new SqlCommand(query, conn);
-            int data = (int)sqlCommand.ExecuteScalar();
-            if (getEmail != data.ToString())
-            {
-                errorProvider1.SetError(email, "Wrong Email");
-            }
         }
 
         public Form1()
@@ -86,14 +77,14 @@ namespace CsharpForm
             conn.Open();
             string getMail = email.Text;
             string getPassword = password.Text;
-            string query = "SELECT Email,FMLPassword from UserAdmin where Email='" + getMail + "'AND FMLPassword='" + getPassword + "'";
+            string query = "SELECT name,FMLPassword from UserAdmin where name='" + getMail + "'AND FMLPassword='" + getPassword + "'";
             SqlCommand sqlCommand = new SqlCommand(query, conn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
             DataTable dt = new DataTable();
             sda.Fill(dt);//something
             if (dt.Rows.Count > 0)
             {
-                string data1 = dt.Rows[0]["Email"].ToString();
+                string data1 = dt.Rows[0]["name"].ToString();
                 string data2 = dt.Rows[0]["FMLPassword"].ToString();
                 if (getMail == data1 && getPassword == data2)
                 {
@@ -189,6 +180,11 @@ namespace CsharpForm
             nextForm = new ForgetPassword();
             nextForm.ShowDialog();
             this.Show();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
