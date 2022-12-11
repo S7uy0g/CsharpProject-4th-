@@ -11,8 +11,8 @@ namespace CsharpForm
 {
     public partial class Form1 : Form
     {
-        //SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
-        SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");
+        SqlConnection conn = new SqlConnection(@"Data Source = .\SQLEXPRESS; Initial Catalog = FMLProject; Integrated Security = True");
+       // SqlConnection conn = new SqlConnection(@"Data Source=GWTN141-4;Initial Catalog=FMLProject;Integrated Security=True");
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
 
         private static extern IntPtr CreateRoundRectRgn
@@ -24,6 +24,7 @@ namespace CsharpForm
                 int nWidthEllipse,
                 int nHeightEllipse
             );
+        //whole form function
         private void Form1_Load(object sender, EventArgs e)
         {
             panel1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel1.Width, panel1.Height, 40, 40));
@@ -40,6 +41,7 @@ namespace CsharpForm
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
         }
+        //Person Playing Football function
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
@@ -59,13 +61,14 @@ namespace CsharpForm
         {
 
         }
-
+        //Login Function
         private void button1_Click(object sender, EventArgs e)
         {
             conn.Open();
             string getMail = email.Text;
             string getPassword = password.Text;
-            string query = "SELECT Email,FMLPassword from UserAdmin where Email='" + getMail + "'AND FMLPassword='" + getPassword + "'";
+            //string query = "SELECT Email,FMLPassword from UserAdmin where Email='" + getMail + "'AND FMLPassword='" + getPassword + "'";
+            string query = "SELECT Email,FMLPassword from User_Admin where Email='" + getMail + "'AND FMLPassword='" + getPassword + "'";
             SqlCommand sqlCommand = new SqlCommand(query, conn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
             DataTable dt = new DataTable();
@@ -94,11 +97,12 @@ namespace CsharpForm
             }
             conn.Close();
         }
+        //Password Logo Function
         private void label3_Click(object sender, EventArgs e)
         {
 
         }
-
+        //Email Logo function
         private void label1_Click_1(object sender, EventArgs e)
         {
 
@@ -113,12 +117,13 @@ namespace CsharpForm
         {
 
         }
-
+        //Password text function
         private void password_TextChanged(object sender, EventArgs e)
         {
             conn.Open();
             string getPassword = password.Text;
-            string query = "SELECT FMLPassword from UserAdmin where FMLPassword='" + getPassword + "'";
+            //string query = "SELECT FMLPassword from UserAdmin where FMLPassword='" + getPassword + "'";
+            string query = "SELECT FMLPassword from User_Admin where FMLPassword='" + getPassword + "'";
             SqlCommand sqlCommand = new SqlCommand(query, conn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
             DataTable dt = new DataTable();
@@ -133,11 +138,13 @@ namespace CsharpForm
             }
             conn.Close();
         }
+        //Email text function
         private void email_TextChanged(object sender, EventArgs e)
         {
             conn.Open();
             string getMail=email.Text;
-            string query = "SELECT Email from UserAdmin where Email='" + getMail + "'";
+            //string query = "SELECT Email from UserAdmin where Email='" + getMail + "'";
+            string query = "SELECT Email from User_Admin where Email='" + getMail + "'";
             SqlCommand sqlCommand = new SqlCommand(query, conn);
             SqlDataAdapter sda = new SqlDataAdapter(sqlCommand);
             DataTable dt = new DataTable();
@@ -152,13 +159,14 @@ namespace CsharpForm
             }
             conn.Close();
         }
+        //Admin Function
         private void signUp_Click(object sender, EventArgs e)
         {
             this.Show();
             signUpForm pageLoad = new signUpForm();
             pageLoad.Show();
         }
-
+        //Hide Password Function
         private void button1_Click_1(object sender, EventArgs e)
         {
             if(password.PasswordChar =='*')
@@ -181,7 +189,7 @@ namespace CsharpForm
             ForgetPassword pageLoad = new ForgetPassword();
             pageLoad.Show();
         }
-
+        //Forget Password Function
         private void button2_Click(object sender, EventArgs e)
         {
             ForgetPassword nextForm;
@@ -190,7 +198,7 @@ namespace CsharpForm
             nextForm.ShowDialog();
             this.Show();
         }
-
+        //PictureBox Football logo Function
         private void pictureBox2_Click(object sender, EventArgs e)
         {
 
